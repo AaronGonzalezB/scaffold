@@ -33,7 +33,7 @@ Create these files inside the Project scaffold (`touch` in Cloud9 terminal):
 
 ### 4. Setting up the project files:
 
-  **1. Makefile:**
+  **1. Makefile:** Setting up the structure of the project.
   
     install:
        pip install --upgrade pip &&\
@@ -49,7 +49,7 @@ Create these files inside the Project scaffold (`touch` in Cloud9 terminal):
 
        python -m pytest -vv --cov=hello test_hello.py
    
-   **2. Requirements.txt:**
+   **2. Requirements.txt:** packages to install.
    
      pylint
      pytest
@@ -58,4 +58,33 @@ Create these files inside the Project scaffold (`touch` in Cloud9 terminal):
      pytest-cov
      
    Then, in the terminal install the requirements with `make install`
+   
+   **3. Hello.py:** The glorious solution.
+   
+    def add(x, y):
+     return x + y
+     
+    result = add(1, 2)
+    print(f"This is the sum of 1 and 2: {result}")
+    
+   **Optional:** Run `make format` and `make lint` to apply format to the code.
+   
+   **4. test_hello.py:** Testing file of the solution.
+   
+    from hello import add
+
+    def test_add():
+        assert add(1,2) == 3
+     
+   **Optional:** To execute all the Makefile, add the lint and test: `all: install lint test` and then `make all` in the Terminal.
+
+### 5. Push the development to GitHub:
+
+     git status
+     git add *
+     git commit -m "add structure"
+     git config --global user.name "Username"
+     git config --global user.email emailname@domain.com
+     git commit --amend --reset-author
+     git push
 
