@@ -89,4 +89,40 @@ Create these files inside the Project scaffold (`touch` in Cloud9 terminal):
      git config --global user.email emailname@domain.com
      git commit --amend --reset-author
      git push
+     
+### 6. Insert GitHub actions: 
+
+To make automated testing easy.
+   
+   **1. Create a new workflow:** Actions - new workflow, you can select a workflow based on a template or setting up yourself.
+   
+   **2. Setting up the main.yml:** Every push execute all the actions on the main.yml file
+   
+    name: Python application test with Github Actions
+
+    on: [push]
+
+    jobs:
+      build:
+
+        runs-on: ubuntu-latest
+
+        steps:
+        - uses: actions/checkout@v2
+        - name: Set up Python 3.8
+          uses: actions/setup-python@v1
+          with:
+            python-version: 3.8
+        - name: Install dependencies
+          run: |
+            make install
+        - name: Lint with pylint
+          run: |
+            make lint
+        - name: Test with pytest
+          run: |
+            make test
+        - name: Format code
+          run: |
+            make format
 
